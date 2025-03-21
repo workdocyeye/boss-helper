@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>支持开发者 - 我来直聘</title>
+  <style>
+    body {
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .header img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 15px;
+    }
+    
+    h1 {
+      font-size: 28px;
+      color: #333;
+      margin: 0 0 10px 0;
+    }
+    
+    .description {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .qr-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      padding: 25px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .qr-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .qr-box.alipay {
+      border-top: 5px solid #1678ff;
+    }
+    
+    .qr-box.wechat {
+      border-top: 5px solid #09bb07;
+    }
+    
+    .qr-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .alipay .qr-title {
+      color: #1678ff;
+    }
+    
+    .wechat .qr-title {
+      color: #09bb07;
+    }
+    
+    .qr-code {
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+    
+    .qr-hint {
+      font-size: 14px;
+      color: #888;
+    }
+    
+    .back-btn {
+      display: inline-block;
+      background: #1e88e5;
+      color: white;
+      text-align: center;
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    
+    .back-btn:hover {
+      background: #1565c0;
+    }
+    
+    .btn-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    @media (max-width: 700px) {
+      .qr-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .container {
+        padding: 20px 15px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="images/logo-128x128.png" alt="Logo">
+      <h1>感谢您的支持</h1>
+    </div>
+    
+    <div class="description">
+      <p>您的支持是我们持续改进"我来直聘"插件的动力！如果您觉得这个插件对您有所帮助，欢迎赞助开发者一杯咖啡，您的支持将帮助我们不断优化和完善功能。</p>
+    </div>
+    
+    <div class="qr-container">
+      <div class="qr-box alipay">
+        <div class="qr-title">支付宝</div>
+        <img src="images/alipay-qr.jpg" alt="支付宝收款码" class="qr-code">
+        <div class="qr-hint">打开支付宝扫一扫</div>
+      </div>
+      
+      <div class="qr-box wechat">
+        <div class="qr-title">微信支付</div>
+        <img src="images/wechat-qr.jpg" alt="微信收款码" class="qr-code">
+        <div class="qr-hint">打开微信扫一扫</div>
+      </div>
+    </div>
+    
+    <div class="btn-container">
+      <a href="javascript:history.back()" class="back-btn">返回上一页</a>
+    </div>
+    
+    <div class="footer">
+      <p>感谢您的每一份支持！</p>
+      <p>© 2023 我来直聘 - 帮助求职者更好地找工作</p>
+    </div>
+  </div>
+</body>
+</html> 

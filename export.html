@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo导出工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .button {
+            background-color: #1890FF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .preview {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #svgContainer {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logo导出工具</h1>
+    <div id="svgContainer"></div>
+    <div class="preview">
+        <button class="button" onclick="exportPNG(16)">导出 16x16</button>
+        <button class="button" onclick="exportPNG(32)">导出 32x32</button>
+        <button class="button" onclick="exportPNG(48)">导出 48x48</button>
+        <button class="button" onclick="exportPNG(128)">导出 128x128</button>
+    </div>
+
+    <script>
+        // 加载SVG
+        fetch('logo.svg')
+            .then(response => response.text())
+            .then(svgContent => {
+                document.getElementById('svgContainer').innerHTML = svgContent;
+            });
+
+        function exportPNG(size) {
+            const svg = document.querySelector('svg');
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            const svgBlob = new Blob([svg.outerHTML], {type: 'image/svg+xml;charset=utf-8'});
+            const URL = window.URL || window.webkitURL || window;
+            const blobURL = URL.createObjectURL(svgBlob);
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                const link = document.createElement('a');
+                link.download = `logo-${size}x${size}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                URL.revokeObjectURL(blobURL);
+            };
+            
+            img.src = blobURL;
+        }
+    </script>
+</body>
+</html> 

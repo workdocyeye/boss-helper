@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>我来直聘</title>
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      font-family: 'Microsoft YaHei', sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #333;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .header img {
+      width: 36px;
+      height: 36px;
+      margin-right: 12px;
+      border-radius: 8px;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .content {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .content p {
+      margin: 0 0 10px;
+      line-height: 1.5;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .settings-section {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border: 1px solid #eee;
+    }
+    
+    .settings-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
+    }
+    
+    .settings-section input {
+      width: 100px;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    
+    .settings-section input:focus {
+      outline: none;
+      border-color: #ff6b81;
+      box-shadow: 0 0 0 2px rgba(255,107,129,0.1);
+    }
+    
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      width: 100%;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #startBtn {
+      background: #ff6b81;
+      color: white;
+    }
+    
+    #startBtn:hover {
+      background: #ff4757;
+    }
+    
+    #resetBtn {
+      background: #ff4d4f;
+      color: white;
+    }
+    
+    #resetBtn:hover {
+      background: #ff2d2f;
+    }
+    
+    #saveSettings {
+      background: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      margin-left: 10px;
+    }
+    
+    #saveSettings:hover {
+      background: #43A047;
+    }
+    
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    
+    .progress {
+      margin: 20px 0;
+      display: none;
+    }
+    
+    .progress.active {
+      display: block;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    
+    .progress-bar-inner {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b81, #ff4757);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+      text-align: center;
+      color: #666;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    
+    .donate-section {
+      margin-top: 25px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+    
+    .donate-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+    
+    .donate-description {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .qr-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      padding: 0 10px;
+    }
+    
+    .qr-box {
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    
+    .qr-box:hover {
+      transform: translateY(-2px);
+    }
+    
+    .qr-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .alipay .qr-title {
+      color: #1678ff;
+    }
+    
+    .wechat .qr-title {
+      color: #09bb07;
+    }
+    
+    .qr-code {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    
+    .qr-code:hover {
+      opacity: 0.9;
+    }
+    
+    .qr-hint {
+      font-size: 12px;
+      color: #999;
+      margin-top: 6px;
+    }
+    
+    .footer {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      line-height: 1.5;
+    }
+    
+    /* 模态框样式优化 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.75);
+      backdrop-filter: blur(2px);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 25px;
+      width: 320px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    
+    .enlarged-qr {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 24px;
+      font-weight: normal;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.2s ease;
+    }
+    
+    .close:hover {
+      color: #666;
+    }
+    
+    .wechat-modal .modal-title {
+      color: #09bb07;
+    }
+
+    /* 全局禁用模态框样式 */
+    .hide-modal {
+      display: none !important;
+    }
+    
+    .show-modal {
+      display: block !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="images/logo-32x32.png" alt="Logo">
+    <h1>我来直聘</h1>
+  </div>
+  <div class="content">
+    <p>欢迎使用我来直聘！</p>
+    <p>这里可以帮助你自动打招呼，提高求职效率。</p>
+    
+    <div class="settings-section" style="margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 4px;">
+      <div style="margin-bottom: 10px;">
+        <label for="maxGreets" style="display: block; margin-bottom: 5px;">打招呼上限（1-200）：</label>
+        <input type="number" id="maxGreets" min="1" max="200" value="100" style="width: 80px; padding: 5px;">
+        <button id="saveSettings" style="margin-left: 10px; padding: 5px 10px;">保存设置</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="progress">
+    <div class="progress-bar">
+      <div class="progress-bar-inner"></div>
+    </div>
+    <div class="progress-text">已完成: <span id="progressCount">0</span>/<span id="maxGreetsDisplay">100</span></div>
+  </div>
+  
+  <div class="button-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button id="startBtn">开始自动打招呼</button>
+    <button id="stopBtn" style="display: none;">停止自动打招呼</button>
+    <button id="resetBtn" style="background-color: #ff4d4f;">重置进度</button>
+  </div>
+  
+  <div class="donate-section">
+    <div class="donate-title">❤️ 哇，这个插件帮到您了吗？</div>
+    <div style="text-align: center; margin-bottom: 15px; color: #666; font-size: 13px; line-height: 1.5;">
+      呐，您的一杯小咖啡 ☕ 呢，能让开发者熬夜加班更有动力呀！<br>
+      一起加油让求职之路更加顺利吧！👑 非常感谢你的支持，您的支持会让我们做的更好！😄
+    </div>
+    <div class="qr-container">
+      <div class="qr-box alipay">
+        <div class="qr-title">支付宝</div>
+        <img src="images/alipay-qr.jpg" alt="支付宝收款码" class="qr-code" id="alipayQr">
+        <div class="tap-hint">点击放大</div>
+        <div class="qr-hint">点击二维码放大</div>
+      </div>
+      <div class="qr-box wechat">
+        <div class="qr-title">微信支付</div>
+        <img src="images/wechat-qr.jpg" alt="微信收款码" class="qr-code" id="wechatQr">
+        <div class="tap-hint">点击放大</div>
+        <div class="qr-hint">点击二维码放大</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div>版本: 1.0</div>
+    <div style="font-size: 12px; color: #666; margin-top: 5px;">© 2024 叶俊宇 (ye1026789747@Gmail.com)</div>
+  </div>
+  
+  <!-- 放大模态框 -->
+  <div id="alipayModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeAlipay">&times;</span>
+      <div class="modal-title">支付宝扫码</div>
+      <img src="images/alipay-qr.jpg" alt="支付宝收款码" class="enlarged-qr">
+    </div>
+  </div>
+  
+  <div id="wechatModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeWechat">&times;</span>
+      <div class="modal-title">微信扫码</div>
+      <img src="images/wechat-qr.jpg" alt="微信收款码" class="enlarged-qr">
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+  <script>
+    // 将事件监听器添加到DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM加载完成，初始化事件监听');
+      
+      // 获取元素
+      const alipayQr = document.getElementById('alipayQr');
+      const wechatQr = document.getElementById('wechatQr');
+      const alipayModal = document.getElementById('alipayModal');
+      const wechatModal = document.getElementById('wechatModal');
+      const closeAlipay = document.getElementById('closeAlipay');
+      const closeWechat = document.getElementById('closeWechat');
+      
+      // 支付宝点击事件
+      if(alipayQr) {
+        alipayQr.addEventListener('click', function() {
+          console.log('点击了支付宝收款码');
+          if(alipayModal) {
+            alipayModal.style.display = 'block';
+            console.log('显示支付宝模态框');
+          }
+        });
+      }
+      
+      // 微信点击事件
+      if(wechatQr) {
+        wechatQr.addEventListener('click', function() {
+          console.log('点击了微信收款码');
+          if(wechatModal) {
+            wechatModal.style.display = 'block';
+            console.log('显示微信模态框');
+          }
+        });
+      }
+      
+      // 关闭按钮事件
+      if(closeAlipay) {
+        closeAlipay.addEventListener('click', function() {
+          console.log('点击关闭支付宝模态框');
+          if(alipayModal) {
+            alipayModal.style.display = 'none';
+          }
+        });
+      }
+      
+      if(closeWechat) {
+        closeWechat.addEventListener('click', function() {
+          console.log('点击关闭微信模态框');
+          if(wechatModal) {
+            wechatModal.style.display = 'none';
+          }
+        });
+      }
+      
+      // 点击模态框背景关闭
+      window.addEventListener('click', function(event) {
+        if (event.target === alipayModal) {
+          alipayModal.style.display = 'none';
+        }
+        if (event.target === wechatModal) {
+          wechatModal.style.display = 'none';
+        }
+      });
+      
+      console.log('事件监听器初始化完成');
+    });
+  </script>
+</body>
+</html> 

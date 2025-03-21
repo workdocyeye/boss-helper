@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "我来直聘",
+  "version": "1.0.0",
+  "description": "一个帮助求职者提高效率的 Chrome 扩展程序，支持在 BOSS 直聘平台自动打招呼功能。",
+  "author": "叶俊宇",
+  "homepage_url": "https://github.com/workdocyeye/boss-helper",
+  "icons": {
+    "16": "images/logo-16x16.png",
+    "32": "images/logo-32x32.png",
+    "48": "images/logo-48x48.png",
+    "128": "images/logo-128x128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/logo-16x16.png",
+      "32": "images/logo-32x32.png",
+      "48": "images/logo-48x48.png",
+      "128": "images/logo-128x128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.zhipin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.zhipin.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*"],
+      "matches": ["https://*.zhipin.com/*"]
+    }
+  ]
+} 
