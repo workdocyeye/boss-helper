@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "我来直聘",
-  "version": "1.0.0",
-  "description": "一个帮助求职者提高效率的 Chrome 扩展程序，支持在 BOSS 直聘平台自动打招呼功能。",
-  "author": "叶俊宇",
+  "version": "1.0.1",
+  "description": "一个帮助求职者提高效率的 Chrome 扩展程序，支持在 BOSS 直聘平台自动打招呼功能。仅供个人使用，禁止商业用途。",
+  "author": "叶俊宇 © 2025",
   "homepage_url": "https://github.com/workdocyeye/boss-helper",
   "icons": {
     "16": "images/logo-16x16.png",
