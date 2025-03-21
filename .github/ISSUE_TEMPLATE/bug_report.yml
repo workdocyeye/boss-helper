@@ -1,0 +1,48 @@
+name: 🐛 问题反馈
+description: 提交一个问题帮助我们改进
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您花时间填写这份问题反馈！
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么？
+      description: 请详细描述您遇到的问题
+      placeholder: "例如：在点击自动打招呼按钮时..."
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: 使用的浏览器
+      description: 您使用的是哪个浏览器？
+      options:
+        - Chrome
+        - Edge
+        - Firefox
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 插件版本
+      description: 您使用的插件版本是多少？
+      placeholder: "例如：1.0.1"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志
+      description: 如果有相关的错误日志，请粘贴在这里
+      render: shell
+  - type: textarea
+    id: additional
+    attributes:
+      label: 补充信息
+      description: 还有什么需要补充的信息吗？
